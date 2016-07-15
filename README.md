@@ -1,8 +1,8 @@
 # Dodiez
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dodiez`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem does the simple thing like "HashWithIndifferentAccess":
+Implements a hash where keys :foo and "foo" are considered to be the same.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +22,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use it you have to modify your hash:
+
+```ruby
+your_hash = { qwe: 1, "qaz" => 2 }
+your_modified_hash = CoolHash.new(your_hash)
+```
+
+After it you can access keys as symbol or string:
+```ruby
+your_modified_hash[:qwe] # 1
+your_modified_hash["qwe"] # 1
+
+your_modified_hash[:qaz] # 2
+your_modified_hash["qaz"] # 2
+```
+
+If your hash has the same Symbol and String keys, it returns their values properly.
+
+```ruby
+your_hash = { qwe: 1, "qwe" => 2 }
+your_modified_hash = CoolHash.new(your_hash)
+
+your_modified_hash[:qwe] # 1
+your_modified_hash["qwe"] # 2
+
+```
 
 ## Development
 
